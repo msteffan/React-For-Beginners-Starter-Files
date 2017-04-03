@@ -3,13 +3,15 @@ import React from 'react';
 import Header from './Header'
 import Order from './Order'
 import Inventory from './Inventory'
-
+import fishes from '../sample-fishes'
 
 class App extends React.Component {
   constructor(){
     //  inits the react component that we're extending
     super();
-    this.addFish = this.addFish.bind(this)
+    this.addFish = this.addFish.bind(this);
+    this.loadSamples = this.loadSamples.bind(this)
+
     // getInitialState
     this.state = {
       fishes: {},
@@ -29,6 +31,14 @@ class App extends React.Component {
     this.setState({ fishes })
   }
 
+  // LOAD SAMPLES
+  loadSamples(){
+    this.setState({
+      fishes: fishes
+    })
+  }
+
+
   // RENDER
   render(){
     return (
@@ -37,7 +47,7 @@ class App extends React.Component {
           <Header tagline="Fresh Seafood Market"/>
         </div>
         <Order />
-        <Inventory addFish={this.addFish} />
+        <Inventory loadSamples={this.loadSamples} addFish={this.addFish} />
       </div>
     )
   }
